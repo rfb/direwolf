@@ -553,6 +553,21 @@ if(WIN32 OR CYGWIN)
   target_link_libraries(appserver ws2_32)
 endif()
 
+# Test application to generate sound.
+# gen_ardop_frame
+list(APPEND gen_ardop_frame_SOURCES
+  ardop_frames.c
+  textcolor.c
+  gen_ardop_frame.c
+  )
+
+add_executable(gen_ardop_frame
+  ${gen_ardop_frame_SOURCES}
+  )
+
+target_link_libraries(gen_ardop_frame
+  ${MISC_LIBRARIES}
+  )
 
 install(TARGETS direwolf DESTINATION ${INSTALL_BIN_DIR})
 install(TARGETS decode_aprs DESTINATION ${INSTALL_BIN_DIR})
@@ -568,6 +583,7 @@ install(TARGETS ttcalc DESTINATION ${INSTALL_BIN_DIR})
 install(TARGETS kissutil DESTINATION ${INSTALL_BIN_DIR})
 install(TARGETS tnctest DESTINATION ${INSTALL_BIN_DIR})
 install(TARGETS appserver DESTINATION ${INSTALL_BIN_DIR})
+install(TARGETS gen_ardop_frame DESTINATION ${INSTALL_BIN_DIR})
 if(UDEV_FOUND OR WIN32 OR CYGWIN)
   install(TARGETS cm108 DESTINATION ${INSTALL_BIN_DIR})
 endif()
